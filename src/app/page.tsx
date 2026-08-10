@@ -1,12 +1,26 @@
 // src/app/page.tsx
+import { PageContainer, PageHeader, StatusDisplay } from "@/components";
+
 export default function HomePage() {
   return (
-    <main className="p-8 font-sans transition-colors duration-200 dark:bg-zinc-900 dark:text-zinc-100">
-      <h1 className="text-2xl font-bold">Theme & Query Framework Stacked</h1>
-      <p className="text-gray-500 dark:text-gray-400 mt-2">
-        Change your operating system theme to dark mode to see this component
-        switch themes smoothly.
-      </p>
-    </main>
+    <PageContainer>
+      <PageHeader
+        title="Inventory Matrix"
+        description="Monitor system analytics and data connections downstream."
+        action={
+          <button className="bg-primary text-primary-foreground px-4 py-2 rounded-md text-sm font-medium hover:bg-primary/90 transition-colors">
+            Trigger Action
+          </button>
+        }
+      />
+
+      <div className="grid gap-6">
+        <StatusDisplay
+          variant="empty"
+          title="No Active Connection Pools"
+          description="Initialize your Express backend endpoint configs before scaling migrations."
+        />
+      </div>
+    </PageContainer>
   );
 }
