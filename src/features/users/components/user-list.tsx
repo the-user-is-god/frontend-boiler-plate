@@ -1,5 +1,6 @@
 "use client";
 
+import { toast } from "@/utils/toast";
 import { useUsers } from "../hooks/use-users";
 import { StatusDisplay } from "@/components";
 
@@ -27,6 +28,18 @@ export function UserList() {
       />
     );
 
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteUser(id);
+      toast.success(
+        "Entity purged successfully",
+        `Removed database target identification: ${id}`,
+      );
+    } catch (err) {
+      toast.error(err, "Failed to eliminate targeted user node.");
+    }
+  };
+
   return (
     <div className="space-y-4 p-5 border bg-white rounded-xl shadow-sm">
       <h3 className="font-bold text-sm tracking-tight text-zinc-900">
@@ -49,7 +62,7 @@ export function UserList() {
               </p>
             </div>
             <button
-              onClick={() => deleteUser(item.id)}
+              onClick={() => handleDelete(item.id)}
               className="text-red-600 hover:text-red-700 font-medium px-2 py-1 border border-red-200 rounded hover:bg-red-50 transition-colors"
             >
               Delete
