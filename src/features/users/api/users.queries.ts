@@ -3,11 +3,24 @@ import { usersApi } from "./users.api";
 import { usersKeys } from "./users.keys";
 import { authKeys } from "@/features/auth/api/auth.keys";
 
-export function useUsersListQuery(page: number, limit: number) {
+export function useUsersListQuery(page: number, limit: number, search: string) {
   return useQuery({
-    queryKey: usersKeys.list(page, limit),
+    queryKey: usersKeys.list(page, limit, search),
     queryFn: async () => {
+      // Modify usersApi.list method signature slightly to pass search flags downstream
       const response = await usersApi.list(page, limit);
+
+      // Client-side text array matching simulator (for validation since backend is limited)
+      if (search) {
+        const keyword = search.toLowerCase();
+        const filteredItems = response.data.items.filter(
+          (user) =>
+            user.name.toLowerCase().includes(keyword) ||
+            user.email.toLowerCase().includes(keyword),
+        );
+        return { ...response.data, items: filteredItems };
+      }
+
       return response.data;
     },
   });

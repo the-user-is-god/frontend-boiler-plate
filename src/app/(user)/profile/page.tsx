@@ -4,6 +4,7 @@
 import { PageContainer, PageHeader } from "@/components";
 import { ExampleManager } from "@/features/example"; // Pure, encapsulated boundary import
 import { ProfileForm, UserList } from "@/features/users";
+import { UserFilters } from "@/features/users/components/use-filters";
 
 export default function ProfilePage() {
   return (
@@ -20,7 +21,10 @@ export default function ProfilePage() {
         <ProfileForm />
 
         {/* Validates TanStack Query, Status Displays, custom Error Normalizers and Pagination state systems */}
-        <UserList />
+        <div className="space-y-4">
+          <UserFilters /> {/* Inject Input controls */}
+          <UserList />
+        </div>
       </div>
     </PageContainer>
   );

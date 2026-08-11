@@ -1,4 +1,5 @@
-import * as React from "react";
+// Updated src/features/users/hooks/use-users.ts
+import { useUsersFilters } from "./use-users-filters";
 import {
   useUsersListQuery,
   useUpdateProfileMutation,
@@ -8,38 +9,35 @@ import { UpdateProfileSchemaInput } from "../schemas/users.schema";
 import { AppApiError } from "@/lib/api";
 
 export function useUsers() {
-  const [page, setPage] = React.useState(1);
+  const { page, search, setFilters } = useUsersFilters();
   const limit = 5;
 
-  const listQuery = useUsersListQuery(page, limit);
+  const listQuery = useUsersListQuery(page, limit, search);
   const updateMutation = useUpdateProfileMutation();
   const deleteMutation = useDeleteUserMutation();
 
   return {
-    // List state tracking metrics
     users: listQuery.data?.items ?? [],
     pagination: listQuery.data?.meta ?? null,
     isLoading: listQuery.isLoading,
     isError: listQuery.isError,
     error: listQuery.error as AppApiError | null,
 
-    // Page controls
-    nextPage: () => listQuery.data?.meta.hasNextPage && setPage((p) => p + 1),
+    // Bind navigation buttons to update url search parameters instead of local state variables
+    nextPage: () =>
+      listQuery.data?.meta.hasNextPage && setFilters({ page: page + 1 }),
     prevPage: () =>
-      listQuery.data?.meta.hasPreviousPage && setPage((p) => p - 1),
+      listQuery.data?.meta.hasPreviousPage && setFilters({ page: page - 1 }),
     currentPage: page,
+    search,
 
-    // Mutations
-    updateProfile: async (data: UpdateProfileSchemaInput) => {
-      return updateMutation.mutateAsync(data);
-    },
+    updateProfile: async (data: UpdateProfileSchemaInput) =>
+      updateMutation.mutateAsync(data),
     isUpdating: updateMutation.isPending,
     updateError: updateMutation.error as AppApiError | null,
 
     deleteUser: async (id: string) => {
-      if (confirm("Are you sure you want to drop this user entity?")) {
-        return deleteMutation.mutateAsync(id);
-      }
+      if (confirm("Drop user entity?")) return deleteMutation.mutateAsync(id);
     },
     isDeleting: deleteMutation.isPending,
   };
