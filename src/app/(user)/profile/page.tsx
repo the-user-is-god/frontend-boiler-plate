@@ -3,6 +3,7 @@
 
 import { PageContainer, PageHeader } from "@/components";
 import { ExampleManager } from "@/features/example"; // Pure, encapsulated boundary import
+import { ProfileForm, UserList } from "@/features/users";
 
 export default function ProfilePage() {
   return (
@@ -13,6 +14,14 @@ export default function ProfilePage() {
       />
 
       <ExampleManager />
+
+      <div className="grid gap-6 md:grid-cols-2 items-start">
+        {/* Validates Live Axios Interceptors, Zod validation and React Hook Form workflows */}
+        <ProfileForm />
+
+        {/* Validates TanStack Query, Status Displays, custom Error Normalizers and Pagination state systems */}
+        <UserList />
+      </div>
     </PageContainer>
   );
 }
