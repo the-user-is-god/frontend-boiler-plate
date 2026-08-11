@@ -1,6 +1,6 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { exampleApi } from "./example.api";
-import { exampleKeys } from "./example.keys";
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { exampleApi } from './example.api';
+import { exampleKeys } from './example.keys';
 
 export function useExamplesQuery() {
   return useQuery({

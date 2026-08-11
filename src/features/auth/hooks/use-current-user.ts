@@ -1,4 +1,4 @@
-import { useMeQuery } from "../api/auth.queries";
+import { useMeQuery } from '../api/auth.queries';
 
 export function useCurrentUser() {
   const { data: user, isLoading, isError, refetch } = useMeQuery();

@@ -1,10 +1,10 @@
 // src/app/(dashboard)/profile/page.tsx
-"use client";
+'use client';
 
-import { PageContainer, PageHeader } from "@/components";
-import { ExampleManager } from "@/features/example"; // Pure, encapsulated boundary import
-import { ProfileForm, UserList } from "@/features/users";
-import { UserFilters } from "@/features/users/components/use-filters";
+import { PageContainer, PageHeader } from '@/components';
+import { ExampleManager } from '@/features/example'; // Pure, encapsulated boundary import
+import { ProfileForm, UserList } from '@/features/users';
+import { UserFilters } from '@/features/users/components/use-filters';
 
 export default function ProfilePage() {
   return (
@@ -16,7 +16,7 @@ export default function ProfilePage() {
 
       <ExampleManager />
 
-      <div className="grid gap-6 md:grid-cols-2 items-start">
+      <div className="grid items-start gap-6 md:grid-cols-2">
         {/* Validates Live Axios Interceptors, Zod validation and React Hook Form workflows */}
         <ProfileForm />
 

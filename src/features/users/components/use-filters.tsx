@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import { useUsersFilters } from "../hooks/use-users-filters";
+import * as React from 'react';
+import { useUsersFilters } from '../hooks/use-users-filters';
 
 export function UserFilters() {
   const { search, setFilters } = useUsersFilters();
@@ -25,9 +25,9 @@ export function UserFilters() {
   }, [localSearch, search, setFilters]);
 
   return (
-    <div className="p-4 border bg-zinc-50/50 rounded-xl flex gap-3 items-center">
+    <div className="flex items-center gap-3 rounded-xl border bg-zinc-50/50 p-4">
       <div className="flex-1 space-y-1">
-        <label className="text-[10px] font-bold text-zinc-400 uppercase tracking-wider block">
+        <label className="block text-[10px] font-bold tracking-wider text-zinc-400 uppercase">
           Search Node Query
         </label>
         <input
@@ -35,7 +35,7 @@ export function UserFilters() {
           value={localSearch}
           onChange={(e) => setLocalSearch(e.target.value)}
           placeholder="Filter by name, email coordinates..."
-          className="w-full text-xs p-2 border border-zinc-200 rounded-lg outline-none bg-white focus:ring-2 focus:ring-zinc-950 transition-all"
+          className="w-full rounded-lg border border-zinc-200 bg-white p-2 text-xs transition-all outline-none focus:ring-2 focus:ring-zinc-950"
         />
       </div>
     </div>

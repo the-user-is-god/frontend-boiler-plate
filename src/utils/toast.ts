@@ -1,5 +1,5 @@
-import { toast as sonnerToast } from "sonner";
-import { AppApiError } from "@/lib/api";
+import { toast as sonnerToast } from 'sonner';
+import { AppApiError } from '@/lib/api';
 
 /**
  * Enterprise unified notification gateway.
@@ -21,21 +21,17 @@ export const toast = {
   /**
    * Safely unwraps application-normalized API errors into clean alerts.
    */
-  error: (
-    error: unknown,
-    fallbackMessage = "Transaction execution failure",
-  ) => {
+  error: (error: unknown, fallbackMessage = 'Transaction execution failure') => {
     if (error instanceof AppApiError) {
       sonnerToast.error(error.message, {
         description: error.statusCode
           ? `Server Status Log: ${error.statusCode}`
-          : "Network connectivity drop",
+          : 'Network connectivity drop',
       });
       return;
     }
 
-    const plainMessage =
-      error instanceof Error ? error.message : fallbackMessage;
+    const plainMessage = error instanceof Error ? error.message : fallbackMessage;
     sonnerToast.error(plainMessage);
   },
 
@@ -44,7 +40,7 @@ export const toast = {
    */
   promise: <T>(
     promise: Promise<T> | (() => Promise<T>),
-    config: { loading: string; success: string; error: string },
+    config: { loading: string; success: string; error: string }
   ) => {
     return sonnerToast.promise(promise, config);
   },

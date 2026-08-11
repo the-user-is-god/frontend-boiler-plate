@@ -1,7 +1,7 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { usersApi } from "./users.api";
-import { usersKeys } from "./users.keys";
-import { authKeys } from "@/features/auth/api/auth.keys";
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { usersApi } from './users.api';
+import { usersKeys } from './users.keys';
+import { authKeys } from '@/features/auth/api/auth.keys';
 
 export function useUsersListQuery(page: number, limit: number, search: string) {
   return useQuery({
@@ -15,8 +15,7 @@ export function useUsersListQuery(page: number, limit: number, search: string) {
         const keyword = search.toLowerCase();
         const filteredItems = response.data.items.filter(
           (user) =>
-            user.name.toLowerCase().includes(keyword) ||
-            user.email.toLowerCase().includes(keyword),
+            user.name.toLowerCase().includes(keyword) || user.email.toLowerCase().includes(keyword)
         );
         return { ...response.data, items: filteredItems };
       }

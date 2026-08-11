@@ -1,4 +1,4 @@
-import { useLogoutMutation } from "../api/auth.queries";
+import { useLogoutMutation } from '../api/auth.queries';
 
 export function useLogout() {
   const mutation = useLogoutMutation();

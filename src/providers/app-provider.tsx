@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import { QueryProvider } from "./query-provider";
-import { ThemeProvider } from "./theme-provider";
-import { Toaster } from "sonner";
+import * as React from 'react';
+import { QueryProvider } from './query-provider';
+import { ThemeProvider } from './theme-provider';
+import { Toaster } from 'sonner';
 
 interface AppProviderProps {
   children: React.ReactNode;
@@ -23,7 +23,7 @@ export function AppProvider({ children }: AppProviderProps) {
           richColors
           closeButton
           toastOptions={{
-            style: { fontFamily: "var(--font-sans)", borderRadius: "0.75rem" },
+            style: { fontFamily: 'var(--font-sans)', borderRadius: '0.75rem' },
           }}
         />
       </ThemeProvider>

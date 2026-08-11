@@ -5,23 +5,23 @@
  */
 export const ROUTES = {
   // Public/Marketing Routes
-  home: "/",
-  about: "/about",
+  home: '/',
+  about: '/about',
 
   // Authentication Module
   auth: {
-    login: "/login",
-    register: "/register",
-    forgotPassword: "/forgot-password",
-    resetPassword: "/reset-password",
+    login: '/login',
+    register: '/register',
+    forgotPassword: '/forgot-password',
+    resetPassword: '/reset-password',
   },
 
   // Protected Application Dashboard Layouts
   dashboard: {
-    home: "/dashboard",
-    profile: "/dashboard/profile",
-    settings: "/dashboard/settings",
-    billing: "/dashboard/billing",
+    home: '/dashboard',
+    profile: '/dashboard/profile',
+    settings: '/dashboard/settings',
+    billing: '/dashboard/billing',
   },
 } as const;
 

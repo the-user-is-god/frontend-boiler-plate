@@ -1,5 +1,5 @@
-import axios from "axios";
-import type { ApiErrorResponse } from "./types";
+import axios from 'axios';
+import type { ApiErrorResponse } from './types';
 
 /**
  * Custom application-level error class.
@@ -16,10 +16,10 @@ export class AppApiError extends Error {
       statusCode?: number;
       errors?: Record<string, string[]>;
       isNetworkError?: boolean;
-    },
+    }
   ) {
     super(message);
-    this.name = "AppApiError";
+    this.name = 'AppApiError';
     this.statusCode = options?.statusCode;
     this.errors = options?.errors;
     this.isNetworkError = options?.isNetworkError ?? false;
@@ -43,29 +43,25 @@ export function normalizeApiError(error: unknown): AppApiError {
     if (error.response) {
       const serverData = error.response.data as ApiErrorResponse | undefined;
       return new AppApiError(
-        serverData?.message ||
-          error.response.statusText ||
-          "An error occurred on the server.",
+        serverData?.message || error.response.statusText || 'An error occurred on the server.',
         {
           statusCode: error.response.status,
           errors: serverData?.errors,
-        },
+        }
       );
     }
 
     // 2. Request was made but no response was received from backend (e.g. server down)
     if (error.request) {
       return new AppApiError(
-        "Cannot connect to the server. Please check your internet connection.",
+        'Cannot connect to the server. Please check your internet connection.',
         {
           isNetworkError: true,
-        },
+        }
       );
     }
   }
 
   // 3. Fallback for unhandled native runtime errors or setup issues
-  return new AppApiError(
-    error instanceof Error ? error.message : "An unexpected error occurred.",
-  );
+  return new AppApiError(error instanceof Error ? error.message : 'An unexpected error occurred.');
 }

@@ -1,8 +1,8 @@
-import { LoginForm } from "@/features/auth/components/login-form";
+import { LoginForm } from '@/features/auth/components/login-form';
 
 export default function LoginPage() {
   return (
-    <div className="min-h-screen bg-zinc-50 flex items-center justify-center p-4">
+    <div className="flex min-h-screen items-center justify-center bg-zinc-50 p-4">
       <LoginForm />
     </div>
   );

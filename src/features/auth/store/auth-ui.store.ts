@@ -1,4 +1,4 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 
 interface AuthUiState {
   // 1. Core transient Client State Fields
@@ -23,6 +23,5 @@ export const useAuthUiStore = create<AuthUiState>((set) => ({
 
   setPostLoginRedirectPath: (path) => set({ postLoginRedirectPath: path }),
 
-  resetAuthUiState: () =>
-    set({ isAuthModalOpen: false, postLoginRedirectPath: null }),
+  resetAuthUiState: () => set({ isAuthModalOpen: false, postLoginRedirectPath: null }),
 }));

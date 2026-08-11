@@ -1,5 +1,5 @@
-import { create } from "zustand";
-import { BaseStoreState } from "@/lib/store";
+import { create } from 'zustand';
+import { BaseStoreState } from '@/lib/store';
 
 interface ExampleUiState extends BaseStoreState {
   isPanelExpanded: boolean;

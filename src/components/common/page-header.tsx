@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface PageHeaderProps {
   title: string;
@@ -11,16 +11,12 @@ interface PageHeaderProps {
  */
 export function PageHeader({ title, description, action }: PageHeaderProps) {
   return (
-    <div className="flex flex-col gap-1 sm:flex-row sm:items-center sm:justify-between border-b pb-4 mb-6">
+    <div className="mb-6 flex flex-col gap-1 border-b pb-4 sm:flex-row sm:items-center sm:justify-between">
       <div>
-        <h1 className="text-2xl font-bold tracking-tight text-foreground sm:text-3xl">
-          {title}
-        </h1>
-        {description && (
-          <p className="text-sm text-muted-foreground mt-1">{description}</p>
-        )}
+        <h1 className="text-foreground text-2xl font-bold tracking-tight sm:text-3xl">{title}</h1>
+        {description && <p className="text-muted-foreground mt-1 text-sm">{description}</p>}
       </div>
-      {action && <div className="mt-3 sm:mt-0 sm:ml-4 shrink-0">{action}</div>}
+      {action && <div className="mt-3 shrink-0 sm:mt-0 sm:ml-4">{action}</div>}
     </div>
   );
 }

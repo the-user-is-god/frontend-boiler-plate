@@ -1,12 +1,12 @@
 // Updated src/features/users/hooks/use-users.ts
-import { useUsersFilters } from "./use-users-filters";
+import { useUsersFilters } from './use-users-filters';
 import {
   useUsersListQuery,
   useUpdateProfileMutation,
   useDeleteUserMutation,
-} from "../api/users.queries";
-import { UpdateProfileSchemaInput } from "../schemas/users.schema";
-import { AppApiError } from "@/lib/api";
+} from '../api/users.queries';
+import { UpdateProfileSchemaInput } from '../schemas/users.schema';
+import { AppApiError } from '@/lib/api';
 
 export function useUsers() {
   const { page, search, setFilters } = useUsersFilters();
@@ -24,20 +24,17 @@ export function useUsers() {
     error: listQuery.error as AppApiError | null,
 
     // Bind navigation buttons to update url search parameters instead of local state variables
-    nextPage: () =>
-      listQuery.data?.meta.hasNextPage && setFilters({ page: page + 1 }),
-    prevPage: () =>
-      listQuery.data?.meta.hasPreviousPage && setFilters({ page: page - 1 }),
+    nextPage: () => listQuery.data?.meta.hasNextPage && setFilters({ page: page + 1 }),
+    prevPage: () => listQuery.data?.meta.hasPreviousPage && setFilters({ page: page - 1 }),
     currentPage: page,
     search,
 
-    updateProfile: async (data: UpdateProfileSchemaInput) =>
-      updateMutation.mutateAsync(data),
+    updateProfile: async (data: UpdateProfileSchemaInput) => updateMutation.mutateAsync(data),
     isUpdating: updateMutation.isPending,
     updateError: updateMutation.error as AppApiError | null,
 
     deleteUser: async (id: string) => {
-      if (confirm("Drop user entity?")) return deleteMutation.mutateAsync(id);
+      if (confirm('Drop user entity?')) return deleteMutation.mutateAsync(id);
     },
     isDeleting: deleteMutation.isPending,
   };

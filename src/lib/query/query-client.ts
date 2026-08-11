@@ -1,4 +1,4 @@
-import { QueryClient } from "@tanstack/react-query";
+import { QueryClient } from '@tanstack/react-query';
 
 /**
  * Enterprise core configuration for TanStack Query behavior.
@@ -14,11 +14,7 @@ export const queryClientConfig = {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       retry: (failureCount: number, error: any) => {
         // Do not retry if the backend explicitly tells us the user is unauthorized or input was bad
-        if (
-          error?.statusCode === 401 ||
-          error?.statusCode === 403 ||
-          error?.statusCode === 422
-        ) {
+        if (error?.statusCode === 401 || error?.statusCode === 403 || error?.statusCode === 422) {
           return false;
         }
         return failureCount < 2; // Max out at 2 silent retries for genuine service blips

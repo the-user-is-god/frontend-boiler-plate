@@ -1,7 +1,7 @@
-"use client";
+'use client';
 
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
-import * as React from "react";
+import { useRouter, usePathname, useSearchParams } from 'next/navigation';
+import * as React from 'react';
 
 /**
  * Custom URL State Synchronization Hook.
@@ -13,8 +13,8 @@ export function useUsersFilters() {
   const searchParams = useSearchParams();
 
   // 1. Read values reactively straight from the URL parameters (with solid fallbacks)
-  const page = Number(searchParams.get("page")) || 1;
-  const search = searchParams.get("search") || "";
+  const page = Number(searchParams.get('page')) || 1;
+  const search = searchParams.get('search') || '';
 
   /**
    * Helper function to append or overwrite parameters onto the browser URL history stream.
@@ -24,23 +24,23 @@ export function useUsersFilters() {
       const params = new URLSearchParams(searchParams.toString());
 
       if (newFilters.page !== undefined) {
-        params.set("page", String(newFilters.page));
+        params.set('page', String(newFilters.page));
       }
 
       if (newFilters.search !== undefined) {
         if (newFilters.search) {
-          params.set("search", newFilters.search);
+          params.set('search', newFilters.search);
           // Always reset the page pointer back to 1 when a brand-new keyword is entered
-          params.set("page", "1");
+          params.set('page', '1');
         } else {
-          params.delete("search");
+          params.delete('search');
         }
       }
 
       // Flush parameters to URL history without triggering a full-page reload
       router.push(`${pathname}?${params.toString()}`);
     },
-    [searchParams, pathname, router],
+    [searchParams, pathname, router]
   );
 
   return {

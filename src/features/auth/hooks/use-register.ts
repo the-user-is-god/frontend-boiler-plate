@@ -1,6 +1,6 @@
-import { useRegisterMutation } from "../api/auth.queries";
-import { RegisterSchemaInput } from "../schemas/register.schema";
-import { AppApiError } from "@/lib/api";
+import { useRegisterMutation } from '../api/auth.queries';
+import { RegisterSchemaInput } from '../schemas/register.schema';
+import { AppApiError } from '@/lib/api';
 
 export function useRegister() {
   const mutation = useRegisterMutation();

@@ -1,4 +1,4 @@
-import React from "react";
+import React from 'react';
 
 interface ErrorStateProps {
   title?: string;
@@ -7,25 +7,21 @@ interface ErrorStateProps {
 }
 
 export function ErrorState({
-  title = "Network synchronization breakdown",
+  title = 'Network synchronization breakdown',
   message,
   onRetry,
 }: ErrorStateProps) {
   return (
-    <div className="flex flex-col items-center justify-center p-8 text-center rounded-xl border border-red-100 bg-red-50/30 min-h-[200px]">
-      <div className="w-8 h-8 rounded-full bg-red-50 flex items-center justify-center text-red-600 font-bold text-sm">
+    <div className="flex min-h-[200px] flex-col items-center justify-center rounded-xl border border-red-100 bg-red-50/30 p-8 text-center">
+      <div className="flex h-8 w-8 items-center justify-center rounded-full bg-red-50 text-sm font-bold text-red-600">
         !
       </div>
-      <h4 className="mt-3 text-xs font-bold text-zinc-900 tracking-tight">
-        {title}
-      </h4>
-      {message && (
-        <p className="mt-1 text-xs text-zinc-500 max-w-xs">{message}</p>
-      )}
+      <h4 className="mt-3 text-xs font-bold tracking-tight text-zinc-900">{title}</h4>
+      {message && <p className="mt-1 max-w-xs text-xs text-zinc-500">{message}</p>}
       {onRetry && (
         <button
           onClick={onRetry}
-          className="mt-4 text-[11px] font-semibold bg-white border border-zinc-200 px-3 py-1.5 rounded-md hover:bg-zinc-50 transition-colors shadow-sm"
+          className="mt-4 rounded-md border border-zinc-200 bg-white px-3 py-1.5 text-[11px] font-semibold shadow-sm transition-colors hover:bg-zinc-50"
         >
           Re-evaluate Connection
         </button>

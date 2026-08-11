@@ -1,6 +1,6 @@
-import axios from "axios";
-import { env } from "@/config/env";
-import { normalizeApiError } from "./errors";
+import axios from 'axios';
+import { env } from '@/config/env';
+import { normalizeApiError } from './errors';
 
 /**
  * Centrally configured Axios instance for all HTTP requests to our Express backend.
@@ -11,8 +11,8 @@ export const apiInstance = axios.create({
   withCredentials: true, // Automatically sends browser cookies (e.g., refresh tokens) to backend
   timeout: 15000, // Terminate request if server hangs for more than 15 seconds
   headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
   },
 });
 
@@ -22,5 +22,5 @@ apiInstance.interceptors.response.use(
   (error) => {
     // Convert and throw the normalized error into TanStack Query / Consumers
     return Promise.reject(normalizeApiError(error));
-  },
+  }
 );

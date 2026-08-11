@@ -1,11 +1,11 @@
-"use client";
+'use client';
 
-import * as React from "react";
-import { useRouter, usePathname } from "next/navigation";
-import { useCurrentUser } from "../hooks/use-current-user";
-import { useAuthUiStore } from "../store/auth-ui.store";
-import { ROUTES } from "@/config/routes";
-import { StatusDisplay } from "@/components";
+import * as React from 'react';
+import { useRouter, usePathname } from 'next/navigation';
+import { useCurrentUser } from '../hooks/use-current-user';
+import { useAuthUiStore } from '../store/auth-ui.store';
+import { ROUTES } from '@/config/routes';
+import { StatusDisplay } from '@/components';
 
 interface AuthGuardProps {
   children: React.ReactNode;
@@ -15,9 +15,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
   const router = useRouter();
   const pathname = usePathname();
   const { user, isAuthenticated, isLoading } = useCurrentUser();
-  const setPostLoginRedirectPath = useAuthUiStore(
-    (state) => state.setPostLoginRedirectPath,
-  );
+  const setPostLoginRedirectPath = useAuthUiStore((state) => state.setPostLoginRedirectPath);
 
   React.useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -29,7 +27,7 @@ export function AuthGuard({ children }: AuthGuardProps) {
 
   if (isLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-zinc-50">
+      <div className="flex min-h-screen items-center justify-center bg-zinc-50">
         <StatusDisplay
           variant="loading"
           title="Verifying Authorization..."

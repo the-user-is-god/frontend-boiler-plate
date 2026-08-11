@@ -1,9 +1,6 @@
-import {
-  useExamplesQuery,
-  useCreateExampleMutation,
-} from "../api/example.queries";
-import { ExampleSchemaInput } from "../schemas/example.schema";
-import { AppApiError } from "@/lib/api";
+import { useExamplesQuery, useCreateExampleMutation } from '../api/example.queries';
+import { ExampleSchemaInput } from '../schemas/example.schema';
+import { AppApiError } from '@/lib/api';
 
 export function useExample() {
   const listQuery = useExamplesQuery();
