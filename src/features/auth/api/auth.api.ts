@@ -52,7 +52,7 @@ export const authApi = {
     );
   },
 
-  getMe: async (): Promise<ApiResponse<{ user: User }>> => {
+  getMe: async (): Promise<ApiResponse<{ data: { user: User } }>> => {
     return api.get("/auth/me");
   },
 

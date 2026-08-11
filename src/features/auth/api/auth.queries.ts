@@ -11,7 +11,7 @@ export function useMeQuery(options?: { enabled?: boolean }) {
     queryKey: authKeys.me(),
     queryFn: async () => {
       const response = await authApi.getMe();
-      return response.data.user;
+      return response.data.data?.user;
     },
     enabled: options?.enabled,
     retry: false, // Don't spam retries if user is unauthenticated

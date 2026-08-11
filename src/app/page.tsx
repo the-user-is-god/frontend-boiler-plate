@@ -1,29 +1,39 @@
 // src/app/page.tsx
 "use client";
 
-import { LoginForm } from "@/features/auth/components/login-form";
 import { useCurrentUser } from "@/features/auth/hooks/use-current-user";
+import { useAuthUiStore } from "@/features/auth/store/auth-ui.store";
 
 export default function HomePage() {
-  const { isAuthenticated, user, isLoading } = useCurrentUser();
+  // Server State Managed by TanStack via HTTP-Only Cookies
+  const { user, isAuthenticated } = useCurrentUser();
 
-  if (isLoading)
-    return (
-      <div className="p-8 text-center text-sm">
-        Validating cookie matrices...
-      </div>
-    );
+  // Client UI State Managed by Zustand
+  const { isAuthModalOpen, setAuthModalOpen } = useAuthUiStore();
 
   return (
-    <main className="min-h-screen bg-zinc-50 flex flex-col items-center justify-center p-4">
-      {isAuthenticated ? (
-        <div className="p-6 bg-white border rounded-xl shadow-sm text-sm text-center">
-          Authenticated as <strong>{user?.name}</strong>. Core session
-          boilerplate ready.
-        </div>
-      ) : (
-        <LoginForm />
-      )}
+    <main className="p-8 max-w-md mx-auto space-y-4">
+      <h1 className="text-xl font-bold">State Separation Core</h1>
+
+      <div className="p-4 border rounded-xl bg-white space-y-2 text-black">
+        <p className="text-sm">
+          <strong>Server Cache (User Authenticated):</strong>{" "}
+          {isAuthenticated ? `Yes (${user?.name})` : "No"}
+        </p>
+        <p className="text-sm">
+          <strong>Zustand Store (Auth Overlay Visible):</strong>{" "}
+          {isAuthModalOpen ? "Yes" : "No"}
+        </p>
+      </div>
+
+      <div className="flex gap-2">
+        <button
+          onClick={() => setAuthModalOpen(!isAuthModalOpen)}
+          className="bg-zinc-900 text-white px-3 py-1.5 rounded text-xs font-medium"
+        >
+          Toggle Zustand Modal Flag
+        </button>
+      </div>
     </main>
   );
 }
