@@ -1,9 +1,24 @@
-<!-- BEGIN:nextjs-agent-rules -->
+# AI Agent Workspace & Architecture Context
 
-# This is NOT the Next.js you know
+> **System Instruction for AI Assistants:** Read this file completely before editing, refactoring, or generating code within this Next.js workspace.
 
-This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` (resolved from this file's directory; in monorepos the `next` package may not be visible from the repo root) before writing any code. Heed deprecation notices.
+## 🤖 AI Execution Rules
 
-This block is written and re-added by `next dev` — verify at `node_modules/next/dist/server/lib/generate-agent-files.js`. Removing it from a diff only re-creates the uncommitted change; committing it with your work keeps the tree clean.
+### 1. Code Location Rules
 
-<!-- END:nextjs-agent-rules -->
+- Never add heavy business logic, forms, or API queries inside `src/app/`. Keep files in `src/app/` thin, serving strictly as page entry shells.
+- Never write relative paths going past 2 directories deep (e.g., `../../../../`). Always use the root alias convention `@/`.
+
+### 2. State & Token Rules
+
+- Do not generate local state tokens or attempt to wire up `localStorage` to manage users.
+- Rely on the existing `useCurrentUser()` hooks. Assume that HTTP-only cookies manage session boundaries completely.
+
+### 3. Component Restrictions
+
+- Do not invent custom error panels or inline loaders. Reuse `<LoadingState />`, `<ErrorState />`, and `<EmptyState />` from `@/components`.
+- Rely on `<FormField />` primitives to handle form spacing, error text rendering, and accessibility tags uniformly.
+
+### 4. Eslint Rule Formats
+
+- This workspace relies on modern ESLint Flat Config formats (`eslint.config.mjs`). Do not create or append a legacy `.eslintrc.json` file.

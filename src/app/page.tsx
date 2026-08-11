@@ -1,8 +1,8 @@
 // src/app/page.tsx
-"use client";
+'use client';
 
-import { useCurrentUser } from "@/features/auth/hooks/use-current-user";
-import { useAuthUiStore } from "@/features/auth/store/auth-ui.store";
+import { useCurrentUser } from '@/features/auth/hooks/use-current-user';
+import { useAuthUiStore } from '@/features/auth/store/auth-ui.store';
 
 export default function HomePage() {
   // Server State Managed by TanStack via HTTP-Only Cookies
@@ -12,24 +12,23 @@ export default function HomePage() {
   const { isAuthModalOpen, setAuthModalOpen } = useAuthUiStore();
 
   return (
-    <main className="p-8 max-w-md mx-auto space-y-4">
+    <main className="mx-auto max-w-md space-y-4 p-8">
       <h1 className="text-xl font-bold">State Separation Core</h1>
 
-      <div className="p-4 border rounded-xl bg-white space-y-2 text-black">
+      <div className="space-y-2 rounded-xl border bg-white p-4 text-black">
         <p className="text-sm">
-          <strong>Server Cache (User Authenticated):</strong>{" "}
-          {isAuthenticated ? `Yes (${user?.name})` : "No"}
+          <strong>Server Cache (User Authenticated):</strong>{' '}
+          {isAuthenticated ? `Yes (${user?.name})` : 'No'}
         </p>
         <p className="text-sm">
-          <strong>Zustand Store (Auth Overlay Visible):</strong>{" "}
-          {isAuthModalOpen ? "Yes" : "No"}
+          <strong>Zustand Store (Auth Overlay Visible):</strong> {isAuthModalOpen ? 'Yes' : 'No'}
         </p>
       </div>
 
       <div className="flex gap-2">
         <button
           onClick={() => setAuthModalOpen(!isAuthModalOpen)}
-          className="bg-zinc-900 text-white px-3 py-1.5 rounded text-xs font-medium"
+          className="rounded bg-zinc-900 px-3 py-1.5 text-xs font-medium text-white"
         >
           Toggle Zustand Modal Flag
         </button>
