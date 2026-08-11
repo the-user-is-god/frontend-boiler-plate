@@ -1,20 +1,15 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
-import { api, ApiResponse, PaginatedData } from "@/lib/api";
-import { User, UpdateProfileInput } from "../types";
+import { api, ApiResponse, PaginatedData } from '@/lib/api';
+import { User, UpdateProfileInput } from '../types';
 
 export const usersApi = {
   // Live Endpoint from your backend contract
-  updateProfile: async (
-    data: UpdateProfileInput,
-  ): Promise<ApiResponse<{ user: User }>> => {
-    return api.patch("/user/profile", data);
+  updateProfile: async (data: UpdateProfileInput): Promise<ApiResponse<{ user: User }>> => {
+    return api.patch('/user/profile', data);
   },
 
   // Planned endpoints modeled for full validation
-  list: async (
-    page: number,
-    limit: number,
-  ): Promise<ApiResponse<PaginatedData<User>>> => {
+  list: async (page: number, limit: number): Promise<ApiResponse<PaginatedData<User>>> => {
     // For now, safely proxying a mock response that matches your standard pagination format
     const mockUsers: User[] = Array.from({ length: limit }).map((_, i) => ({
       id: `usr_${(page - 1) * limit + i + 1}`,
@@ -27,7 +22,7 @@ export const usersApi = {
 
     return {
       success: true,
-      message: "Users fetched successfully",
+      message: 'Users fetched successfully',
       data: {
         items: mockUsers,
         meta: {
@@ -42,10 +37,11 @@ export const usersApi = {
     } as any; // Cast as any just to fulfill the wrapper requirements while testing
   },
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   delete: async (id: string): Promise<ApiResponse<void>> => {
     return {
       success: true,
-      message: "User deleted successfully",
+      message: 'User deleted successfully',
       data: undefined,
     };
   },

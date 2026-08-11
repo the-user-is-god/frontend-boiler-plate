@@ -1,7 +1,6 @@
-import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
-import { authApi } from "./auth.api";
-import { authKeys } from "./auth.keys";
-import type { AppApiError } from "@/lib/api";
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { authApi } from './auth.api';
+import { authKeys } from './auth.keys';
 
 /**
  * Query hook fetching or caching current user session.
@@ -70,13 +69,8 @@ export function useForgotPasswordMutation() {
  */
 export function useResetPasswordMutation() {
   return useMutation({
-    mutationFn: ({
-      token,
-      data,
-    }: {
-      token: string;
-      data: { newPassword: string };
-    }) => authApi.resetPassword(token, data),
+    mutationFn: ({ token, data }: { token: string; data: { newPassword: string } }) =>
+      authApi.resetPassword(token, data),
   });
 }
 
