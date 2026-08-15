@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { env } from '@/config/env';
 import { normalizeApiError } from './errors';
+import { setupInterceptors } from './interceptors';
 
 /**
  * Centrally configured Axios instance for all HTTP requests to our Express backend.
@@ -15,6 +16,9 @@ export const apiInstance = axios.create({
     Accept: 'application/json',
   },
 });
+
+// Setup response structures and token refreshing
+setupInterceptors(apiInstance);
 
 // Response Interceptor: Translates failures into a unified AppApiError instance before passing down
 apiInstance.interceptors.response.use(

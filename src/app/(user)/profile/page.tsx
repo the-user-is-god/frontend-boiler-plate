@@ -2,9 +2,6 @@
 'use client';
 
 import { PageContainer, PageHeader } from '@/components';
-import { ExampleManager } from '@/features/example'; // Pure, encapsulated boundary import
-import { ProfileForm, UserList } from '@/features/users';
-import { UserFilters } from '@/features/users/components/use-filters';
 
 export default function ProfilePage() {
   return (
@@ -14,18 +11,18 @@ export default function ProfilePage() {
         description="Verify component composition and clean form abstraction metrics."
       />
 
-      <ExampleManager />
+      {/* <ExampleManager /> */}
 
-      <div className="grid items-start gap-6 md:grid-cols-2">
-        {/* Validates Live Axios Interceptors, Zod validation and React Hook Form workflows */}
-        <ProfileForm />
+      {/* <div className="grid items-start gap-6 md:grid-cols-2"> */}
+      {/* Validates Live Axios Interceptors, Zod validation and React Hook Form workflows */}
+      {/* <ProfileForm /> */}
 
-        {/* Validates TanStack Query, Status Displays, custom Error Normalizers and Pagination state systems */}
-        <div className="space-y-4">
-          <UserFilters /> {/* Inject Input controls */}
-          <UserList />
+      {/* Validates TanStack Query, Status Displays, custom Error Normalizers and Pagination state systems */}
+      {/* <div className="space-y-4"> */}
+      {/* <UserFilters />  */}
+      {/* <UserList />
         </div>
-      </div>
+      </div> */}
     </PageContainer>
   );
 }
