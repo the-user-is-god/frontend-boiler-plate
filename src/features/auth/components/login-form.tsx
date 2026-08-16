@@ -5,10 +5,12 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { loginSchema, LoginSchemaInput } from '../schemas/login.schema';
 import { useLogin } from '../hooks/use-login';
+import { useRouter } from 'next/navigation';
+import { ROUTES } from '@/config/routes';
 
 export function LoginForm() {
   const { login, isLoading, error } = useLogin();
-
+  const router = useRouter();
   const {
     register,
     handleSubmit,
@@ -21,7 +23,7 @@ export function LoginForm() {
   const onSubmit = async (data: LoginSchemaInput) => {
     try {
       await login(data);
-      alert('Logged in successfully!');
+      router.replace(ROUTES.dashboard.home);
     } catch (err) {
       // Caught handled and normalized by custom error system
     }

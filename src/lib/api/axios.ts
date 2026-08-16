@@ -22,7 +22,7 @@ setupInterceptors(apiInstance);
 
 // Response Interceptor: Translates failures into a unified AppApiError instance before passing down
 apiInstance.interceptors.response.use(
-  (response) => response,
+  (response) => response.data,
   (error) => {
     // Convert and throw the normalized error into TanStack Query / Consumers
     return Promise.reject(normalizeApiError(error));

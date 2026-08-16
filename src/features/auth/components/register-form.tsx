@@ -5,6 +5,8 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { registerSchema, RegisterSchemaInput } from '../schemas/register.schema';
 import { useRegister } from '../hooks/use-register';
+import { authApi } from '../api/auth.api';
+import { toast } from '@/utils/toast';
 
 export function RegisterForm() {
   const { registerUser, isLoading, error, isSuccess } = useRegister();
@@ -12,6 +14,7 @@ export function RegisterForm() {
   const {
     register,
     handleSubmit,
+    getValues,
     formState: { errors },
   } = useForm<RegisterSchemaInput>({
     resolver: zodResolver(registerSchema),
@@ -24,13 +27,50 @@ export function RegisterForm() {
     } catch (err) {}
   };
 
+  // if (isSuccess) {
+  //   return (
+  //     <div className="max-w-md rounded-xl border border-green-200 bg-green-50 p-6 text-center">
+  //       <h3 className="font-bold text-green-900">Registration Initiated!</h3>
+  //       <p className="mt-1 text-xs text-green-700">
+  //         Please inspect your email dashboard inbox to verify your account link.
+  //       </p>
+  //     </div>
+  //   );
+  // }
+
+  // Insert into src/features/auth/components/register-form.tsx inside the success conditional state
   if (isSuccess) {
     return (
-      <div className="max-w-md rounded-xl border border-green-200 bg-green-50 p-6 text-center">
-        <h3 className="font-bold text-green-900">Registration Initiated!</h3>
-        <p className="mt-1 text-xs text-green-700">
-          Please inspect your email dashboard inbox to verify your account link.
-        </p>
+      <div className="animate-in fade-in w-full max-w-md space-y-4 rounded-xl border bg-white p-6 text-center shadow-sm duration-200">
+        <div className="mx-auto flex h-12 w-12 items-center justify-center rounded-full bg-zinc-100 text-xl font-bold text-zinc-900">
+          ✓
+        </div>
+        <div>
+          <h3 className="text-lg font-bold text-zinc-900">Verification Issued</h3>
+          <p className="mt-1 text-xs leading-relaxed text-zinc-500">
+            We have generated your verification link. Check your email inbox to activate your
+            account.
+          </p>
+        </div>
+
+        {/* Resend Verification Handler */}
+        <div className="border-t pt-2 text-center">
+          <p className="text-[11px] text-zinc-400">Didn&apos;t catch our transmission link?</p>
+          <button
+            onClick={async () => {
+              try {
+                // Extract original form input value directly via react-hook-form's state mapping
+                await authApi.resendVerification({ email: getValues('email') });
+                toast.success('Token Re-Issued', 'A fresh validation email has been fired.');
+              } catch (err) {
+                toast.error(err);
+              }
+            }}
+            className="mt-1 text-xs font-semibold text-zinc-900 hover:underline"
+          >
+            Resend Verification Link
+          </button>
+        </div>
       </div>
     );
   }

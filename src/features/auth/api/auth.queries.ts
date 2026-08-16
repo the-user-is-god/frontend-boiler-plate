@@ -10,7 +10,7 @@ export function useMeQuery(options?: { enabled?: boolean }) {
     queryKey: authKeys.me(),
     queryFn: async () => {
       const response = await authApi.getMe();
-      return response.data.data?.user;
+      return response.data.user;
     },
     enabled: options?.enabled,
     retry: false, // Don't spam retries if user is unauthenticated
@@ -50,6 +50,8 @@ export function useVerifyEmailMutation() {
   return useMutation({
     mutationFn: authApi.verifyEmail,
     onSuccess: (response) => {
+      console.log(response);
+
       queryClient.setQueryData(authKeys.me(), response.data.user);
     },
   });

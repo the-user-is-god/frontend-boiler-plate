@@ -42,7 +42,7 @@ export const authApi = {
     return api.post(`/auth/reset-password?token=${encodeURIComponent(token)}`, data);
   },
 
-  getMe: async (): Promise<ApiResponse<{ data: { user: User } }>> => {
+  getMe: async (): Promise<ApiResponse<{ user: User }>> => {
     return api.get('/auth/me');
   },
 
