@@ -2,31 +2,50 @@ import React from 'react';
 import { UseFormRegisterReturn } from 'react-hook-form';
 import { FormError } from './form-error';
 
-interface FormFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
+export interface FormFieldProps extends React.InputHTMLAttributes<HTMLInputElement> {
   label: string;
   error?: string;
   registration: UseFormRegisterReturn;
+  rightElement?: React.ReactNode;
 }
 
 /**
- * Standard data-entry input shell with reactive error styling rules.
+ * Standard data-entry input shell with reactive error styling rules and optional right element.
  */
-export const FormField = React.forwardRef<HTMLInputElement, FormFieldProps>(
-  ({ label, error, registration, type = 'text', className = '', ...props }, ref) => {
-    return (
-      <div className="w-full space-y-1.5">
-        <label className="block text-xs font-bold tracking-tight text-zinc-700">{label}</label>
+export const FormField = ({
+  label,
+  error,
+  registration,
+  type = 'text',
+  className = '',
+  rightElement,
+  ...props
+}: FormFieldProps) => {
+  return (
+    <div className="w-full space-y-1.5">
+      <div className="flex items-center justify-between">
+        <label className="block text-xs font-bold tracking-tight text-zinc-300">{label}</label>
+      </div>
+      <div className="relative flex items-center">
         <input
           {...registration}
           {...props}
           type={type}
-          ref={ref}
-          className={`w-full rounded-lg border bg-white p-2.5 text-sm text-zinc-900 transition-all outline-none focus:border-zinc-950 focus:ring-2 focus:ring-zinc-950 disabled:bg-zinc-50 disabled:text-zinc-400 ${error ? 'border-red-400 focus:border-red-500 focus:ring-red-200' : 'border-zinc-200'} ${className}`}
+          className={`w-full rounded-xl border bg-zinc-900/80 px-3.5 py-2.5 text-sm text-white placeholder-zinc-500 shadow-sm transition-all outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20 disabled:opacity-50 ${
+            rightElement ? 'pr-10' : ''
+          } ${
+            error
+              ? 'border-red-500/60 focus:border-red-500 focus:ring-red-500/20'
+              : 'border-zinc-800 hover:border-zinc-700'
+          } ${className}`}
         />
-        <FormError message={error} />
+        {rightElement && (
+          <div className="absolute right-3 flex items-center text-zinc-400">{rightElement}</div>
+        )}
       </div>
-    );
-  }
-);
+      <FormError message={error} />
+    </div>
+  );
+};
 
 FormField.displayName = 'FormField';

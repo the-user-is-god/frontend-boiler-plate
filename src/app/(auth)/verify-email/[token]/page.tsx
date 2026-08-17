@@ -34,7 +34,7 @@ export default function VerifyEmailPage() {
 
   if (verifyMutation.isPending) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-zinc-50">
+      <div className="w-full rounded-2xl border border-zinc-800/80 bg-zinc-900/90 p-8 shadow-2xl backdrop-blur-xl">
         <LoadingState message="Processing cryptographic verification token..." />
       </div>
     );
@@ -42,7 +42,7 @@ export default function VerifyEmailPage() {
 
   if (verifyMutation.isError) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-zinc-50 p-4">
+      <div className="w-full rounded-2xl border border-zinc-800/80 bg-zinc-900/90 p-8 shadow-2xl backdrop-blur-xl">
         <ErrorState
           title="Verification Token Invalid"
           message="The link may be expired, altered, or already processed by our servers."
