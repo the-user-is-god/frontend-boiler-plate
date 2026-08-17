@@ -11,11 +11,11 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
   return (
     <div className="relative flex min-h-screen flex-col justify-between overflow-hidden bg-zinc-950 font-sans text-zinc-100 selection:bg-indigo-500 selection:text-white">
       {/* Background Ambient Glow FX */}
-      <div className="pointer-events-none absolute -top-40 left-1/2 -z-10 h-[500px] w-[600px] -translate-x-1/2 rounded-full bg-gradient-to-tr from-indigo-600/20 via-purple-600/15 to-pink-500/10 opacity-70 blur-3xl" />
-      <div className="pointer-events-none absolute right-10 -bottom-40 -z-10 h-[400px] w-[400px] rounded-full bg-indigo-900/20 opacity-50 blur-3xl" />
+      <div className="pointer-events-none absolute -top-40 left-1/2 -z-10 h-125 w-150 -translate-x-1/2 rounded-full bg-linear-to-tr from-indigo-600/20 via-purple-600/15 to-pink-500/10 opacity-70 blur-3xl" />
+      <div className="pointer-events-none absolute right-10 -bottom-40 -z-10 h-100 w-100 rounded-full bg-indigo-900/20 opacity-50 blur-3xl" />
 
       {/* Subtle Grid Background Pattern */}
-      <div className="pointer-events-none absolute inset-0 -z-20 bg-[linear-gradient(to_right,#1f293715_1px,transparent_1px),linear-gradient(to_bottom,#1f293715_1px,transparent_1px)] [mask-image:radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-[size:4rem_4rem]" />
+      <div className="pointer-events-none absolute inset-0 -z-20 bg-[linear-gradient(to_right,#1f293715_1px,transparent_1px),linear-gradient(to_bottom,#1f293715_1px,transparent_1px)] mask-[radial-gradient(ellipse_60%_50%_at_50%_0%,#000_70%,transparent_100%)] bg-size-[4rem_4rem]" />
 
       {/* Top Navigation Header */}
       <header className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 py-6">
@@ -23,7 +23,7 @@ export default function AuthLayout({ children }: AuthLayoutProps) {
           href={ROUTES.home}
           className="group flex items-center gap-2.5 transition-transform duration-200 active:scale-95"
         >
-          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-lg ring-1 shadow-indigo-500/25 ring-white/20 transition-transform group-hover:scale-105">
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-linear-to-br from-indigo-500 to-purple-600 text-white shadow-lg ring-1 shadow-indigo-500/25 ring-white/20 transition-transform group-hover:scale-105">
             <ShieldCheck className="h-5 w-5" />
           </div>
           <div className="flex flex-col">

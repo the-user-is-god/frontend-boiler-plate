@@ -26,13 +26,14 @@ export function ForgotPasswordForm() {
 
   if (mutation.isSuccess) {
     return (
-      <div className="w-full animate-in fade-in zoom-in-95 rounded-2xl border border-emerald-500/20 bg-zinc-900/90 p-8 text-center shadow-2xl backdrop-blur-xl duration-200">
+      <div className="animate-in fade-in zoom-in-95 w-full rounded-2xl border border-emerald-500/20 bg-zinc-900/90 p-8 text-center shadow-2xl backdrop-blur-xl duration-200">
         <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-emerald-500/10 text-emerald-400 ring-1 ring-emerald-500/20">
           <CheckCircle2 className="h-7 w-7" />
         </div>
         <h2 className="text-xl font-bold tracking-tight text-white">Instructions Transmitted</h2>
         <p className="mt-2 text-xs leading-relaxed text-zinc-400">
-          If an account matches that email address, a password reset link has been generated and issued to your inbox.
+          If an account matches that email address, a password reset link has been generated and
+          issued to your inbox.
         </p>
 
         <div className="mt-6 border-t border-zinc-800/80 pt-5">
@@ -85,7 +86,7 @@ export function ForgotPasswordForm() {
         <button
           type="submit"
           disabled={mutation.isPending}
-          className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-indigo-500 to-purple-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition-all hover:from-indigo-600 hover:to-purple-700 hover:shadow-indigo-500/30 active:scale-[0.98] disabled:opacity-50"
+          className="mt-2 flex w-full items-center justify-center gap-2 rounded-xl bg-linear-to-r from-indigo-500 to-purple-600 px-4 py-3 text-sm font-semibold text-white shadow-lg shadow-indigo-500/20 transition-all hover:from-indigo-600 hover:to-purple-700 hover:shadow-indigo-500/30 active:scale-[0.98] disabled:opacity-50"
         >
           {mutation.isPending ? (
             <>

@@ -36,7 +36,7 @@ export function DashboardHeader() {
           href={ROUTES.dashboard.home}
           className="group flex items-center gap-2.5 transition-transform duration-200 active:scale-95"
         >
-          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-md ring-1 shadow-indigo-500/20 ring-white/20 transition-transform group-hover:scale-105">
+          <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-linear-to-br from-indigo-500 to-purple-600 text-white shadow-md ring-1 shadow-indigo-500/20 ring-white/20 transition-transform group-hover:scale-105">
             <ShieldCheck className="h-5 w-5" />
           </div>
           <div className="flex flex-col">
@@ -51,7 +51,7 @@ export function DashboardHeader() {
         <div className="flex items-center gap-3">
           {user && (
             <div className="hidden items-center gap-2 rounded-full border border-zinc-800 bg-zinc-900/60 px-3 py-1.5 text-xs text-zinc-300 backdrop-blur-md sm:flex">
-              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-gradient-to-tr from-indigo-500 to-purple-600 text-[11px] font-bold text-white shadow-sm">
+              <div className="flex h-6 w-6 items-center justify-center rounded-full bg-linear-to-tr from-indigo-500 to-purple-600 text-[11px] font-bold text-white shadow-sm">
                 {userInitial}
               </div>
               <div className="flex flex-col text-left">
